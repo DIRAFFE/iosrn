@@ -7,7 +7,7 @@
 
 import React from 'react';
 import type {PropsWithChildren} from 'react';
-import {Button, TamaguiProvider} from 'tamagui';
+import {TamaguiProvider} from 'tamagui';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import config from './tamagui.config';
@@ -28,15 +28,14 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Test from './pages/test';
+import HomeScreen from './pages/home';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
 const Stack = createNativeStackNavigator();
-
-const Mystack = () => {
-  
 
 function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -74,14 +73,17 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <TamaguiProvider config={config}>
-        <SafeAreaView style={backgroundStyle}>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Test" component={Test} />
+        </Stack.Navigator>
+        {/* <SafeAreaView style={backgroundStyle}>
           <StatusBar
             barStyle={isDarkMode ? 'light-content' : 'dark-content'}
             backgroundColor={backgroundStyle.backgroundColor}
           />
           <View>
             <Text>123</Text>
-            <Button>444</Button>
           </View>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
@@ -107,7 +109,7 @@ function App(): JSX.Element {
               <LearnMoreLinks />
             </View>
           </ScrollView>
-        </SafeAreaView>
+        </SafeAreaView> */}
       </TamaguiProvider>
     </NavigationContainer>
   );

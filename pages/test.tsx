@@ -1,5 +1,10 @@
 import React from 'react';
+import {Text, View} from 'react-native';
 
 export default function Test() {
-  return <div>test</div>;
+  return (
+    <View>
+      <Text>This is Test123</Text>
+    </View>
+  );
 }
