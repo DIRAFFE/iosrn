@@ -1,14 +1,30 @@
 import React from 'react';
-import {Text, View, Button} from 'react-native';
+import {Text, View} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-export default function HomeScreen({navigation}) {
+const Tab = createBottomTabNavigator();
+
+function HomeContent() {
   return (
-    <View>
-      <Text>Welcome to the Home Screen!</Text>
-      <Button
-        title="Go to Test Screen"
-        onPress={() => navigation.navigate('Test')}
-      />
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text>Home!</Text>
     </View>
+  );
+}
+
+function MyContent() {
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text>My!</Text>
+    </View>
+  );
+}
+
+export default function HomeScreen() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="HomeContent" component={HomeContent} />
+      <Tab.Screen name="MyContent" component={MyContent} />
+    </Tab.Navigator>
   );
 }
